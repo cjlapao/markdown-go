@@ -41,17 +41,19 @@ type TextBlock struct {
 }
 
 // CreateTextBlock Creates a TextBlock Element
-func CreateTextBlock() *TextBlock {
+func (d *Document) CreateTextBlock() *TextBlock {
 	txtBlock := TextBlock{
 		Words: make([]FormatedText, 0),
 	}
+
+	d.Elements = append(d.Elements, &txtBlock)
 	return &txtBlock
 }
 
 // NewLine Adds a new line termination to the TextBlock Element
 func (t *TextBlock) NewLine() *TextBlock {
 	line := FormatedText{
-		Value: "\n\n",
+		Value: "&nbsp;  \n",
 	}
 	t.Words = append(t.Words, line)
 	return t
@@ -157,12 +159,12 @@ func (t *TextBlock) AddCode(value string) *TextBlock {
 // AddLine Adds a string with new line termination to the TextBlock Element
 func (t *TextBlock) AddLine(words ...string) *TextBlock {
 	line := FormatedText{
-		Value: "\n",
+		Value: "  \n",
 	}
 	t.Add(words...)
-	if !strings.HasSuffix(t.Words[len(t.Words)-1].Value, "\n") {
-		line.Value += "\n"
-	}
+	// if !strings.HasSuffix(t.Words[len(t.Words)-1].Value, "\n") {
+	// 	line.Value += "\n"
+	// }
 	t.Words[len(t.Words)-1].Value = strings.TrimSpace(t.Words[len(t.Words)-1].Value)
 	t.Words = append(t.Words, line)
 	return t

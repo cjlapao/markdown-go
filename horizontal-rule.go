@@ -4,8 +4,10 @@ package markdown
 type HorizontalRule struct{}
 
 // CreateHorizontalRule Creates an HorizontalRule Element
-func CreateHorizontalRule() *HorizontalRule {
+func (d *Document) CreateHorizontalRule() *HorizontalRule {
 	horizontalRule := HorizontalRule{}
+
+	d.Elements = append(d.Elements, &horizontalRule)
 	return &horizontalRule
 }
 

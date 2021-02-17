@@ -17,20 +17,22 @@ type Link struct {
 }
 
 // CreateURLLink Creates a Markdown URL Link Element
-func CreateURLLink() *Link {
+func (d *Document) CreateURLLink() *Link {
 	link := Link{
 		Type: URL,
 	}
 
+	d.Elements = append(d.Elements, &link)
 	return &link
 }
 
 // CreateImgLink Creates a Markdown Image Link Element
-func CreateImgLink() *Link {
+func (d *Document) CreateImgLink() *Link {
 	link := Link{
 		Type: Image,
 	}
 
+	d.Elements = append(d.Elements, &link)
 	return &link
 }
 

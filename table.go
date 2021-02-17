@@ -46,7 +46,7 @@ type Table struct {
 }
 
 // CreateTable Creates a Table Element
-func CreateTable() *Table {
+func (d *Document) CreateTable() *Table {
 	headerRow := Row{
 		Columns: make([]*Column, 0),
 	}
@@ -56,6 +56,7 @@ func CreateTable() *Table {
 		Body:   make([]*Row, 0),
 	}
 
+	d.Elements = append(d.Elements, &table)
 	return &table
 }
 

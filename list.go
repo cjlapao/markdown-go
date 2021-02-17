@@ -26,7 +26,7 @@ type ListItem struct {
 
 // CreateList Creates a Sublist inside an List Item
 func (li *ListItem) CreateList() *List {
-	list := CreateList()
+	list := createList()
 	list.Indent = li.Indent + 1
 	list.Type = li.Type
 	li.List = list
@@ -41,14 +41,11 @@ type List struct {
 }
 
 // CreateList Creates an unordered List Element
-func CreateList() *List {
-	list := List{
-		Indent: 0,
-		Type:   Unordered,
-		Items:  make([]*ListItem, 0),
-	}
+func (d *Document) CreateList() *List {
+	list := createList()
 
-	return &list
+	d.Elements = append(d.Elements, list)
+	return list
 }
 
 // CreateOrderedList Creates an ordered List Element
@@ -80,7 +77,7 @@ func (l *List) Add(value string) *List {
 		Type:   l.Type,
 		ID:     lid,
 		Value:  value,
-		List:   CreateList(),
+		List:   createList(),
 		IsDone: false,
 	}
 	listItem.List.Type = l.Type
@@ -154,4 +151,14 @@ func (l *List) Markdown() string {
 		result += "\n"
 	}
 	return result
+}
+
+func createList() *List {
+	list := List{
+		Indent: 0,
+		Type:   Unordered,
+		Items:  make([]*ListItem, 0),
+	}
+
+	return &list
 }
