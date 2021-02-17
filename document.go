@@ -40,11 +40,6 @@ func (d *Document) Add(element Element) {
 	d.Elements = append(d.Elements, element)
 }
 
-// AddHorizontalRule Adds an Horizontal Rule to the document
-func (d *Document) AddHorizontalRule() {
-	d.Elements = append(d.Elements, CreateHorizontalRule())
-}
-
 func insertSpaces(number int) string {
 	result := ""
 	for i := 0; i < number; i++ {

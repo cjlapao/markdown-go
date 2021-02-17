@@ -33,10 +33,13 @@ type CodeBlock struct {
 }
 
 // CreateCodeBlock Creates a Markdown Code Block
-func CreateCodeBlock() *CodeBlock {
+func (d *Document) CreateCodeBlock() *CodeBlock {
 	codeBlock := CodeBlock{
 		Lines: make([]string, 0),
 	}
+
+	d.Elements = append(d.Elements, &codeBlock)
+
 	return &codeBlock
 }
 

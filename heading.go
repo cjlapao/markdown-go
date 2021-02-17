@@ -10,12 +10,14 @@ type Heading struct {
 }
 
 // CreateHeader Creates a Markdown Document Header
-func CreateHeader() *Heading {
+func (d *Document) CreateHeader() *Heading {
 	formatedText := FormatedText{}
 	heading := Heading{
 		Indentation: 1,
 		Text:        &formatedText,
 	}
+
+	d.Elements = append(d.Elements, &heading)
 	return &heading
 }
 
